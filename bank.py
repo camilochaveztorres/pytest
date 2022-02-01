@@ -61,7 +61,7 @@ class Bank:
         accounts = customer.get_all_accounts()
         amount = customer.close_all_accounts()
         self.customer_list.remove(customer)
-        print(f"Customer removed - {accounts} - {amount} returned")
+        print(f"Customer removed - {accounts} closed - {amount} returned")
 
     def add_account(self, pnr):
         customer = self.get_customer(pnr)
@@ -76,7 +76,7 @@ class Bank:
 
     def get_account(self, pnr, account_nr):
         customer = self.get_customer(pnr)
-        print(customer.show_account_info(account_nr))
+        customer.show_account_info(account_nr)
 
     def deposit(self, pnr, account_nr, amount):
         customer = self.get_customer(pnr)
@@ -85,14 +85,15 @@ class Bank:
             return True
         else:
             print('did not work')
+            return False
 
     def withdrawal(self, pnr, account_nr, amount):
         customer = self.get_customer(pnr)
-        if customer.deposit(account_nr, amount):
+        if customer.withdrawal(account_nr, amount):
             print('true')
             return True
         else:
-            print('did not work')
+            return False
 
     def close_account(self, pnr, account_nr):
         customer = self.get_customer(pnr)

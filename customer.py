@@ -30,24 +30,27 @@ class Customer:
 
     def show_account_info(self, account_nr):
         for account in self.account_list:
-            if account.account_nr == account_nr:
-                return account
+            if account.account_nr == int(account_nr):
+                print(account)
 
     def deposit(self, account_nr, amount):
         for account in self.account_list:
-            if account.account_nr == account_nr:
+            if account.account_nr == int(account_nr):
                 account.balance += amount
                 return True
 
     def withdrawal(self, account_nr, amount):
         for account in self.account_list:
-            if account.account_nr == account_nr:
-                account.balance -= amount
-                return True
+            if account.account_nr == int(account_nr):
+                if account.balance >= amount:
+                    account.balance -= amount
+                    return True
+                else:
+                    print("Not enough money in account!")
 
     def close_account(self, account_nr):
         for account in self.account_list:
-            if account.account_nr == account_nr:
+            if account.account_nr == int(account_nr):
                 self.account_list.remove(account)
                 return account.balance
 

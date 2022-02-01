@@ -19,6 +19,9 @@ banken = bank.Bank()
 # banken.get_customers()
 
 
+banken.add_customer('Camilo Chavez', 9304300505)
+banken.add_customer('Anna Marnfeldt', 9805453224)
+banken.add_customer('Cristina Chavez', 98010121054)
 def get_menu():
     run = True
     print("Welcome to the bank!")
@@ -29,9 +32,7 @@ def get_menu():
               "7.Get account\n"
               "8.Withdraw /Deposit money\n9.Close account\n0.Exit")
         try:
-            banken.add_customer('Camilo Chavez', 9304300505)
-            banken.add_customer('Anna Marnfeldt', 9805453224)
-            banken.add_customer('Cristina Chavez', 98010121054)
+
             answer = int(input("Type in your choice:\n"))
             if answer == 1:
                 banken.get_customers()
@@ -48,7 +49,7 @@ def get_menu():
             elif answer == 4:
                 new_name = input("Insert your new name:\n")
                 pnr = input("Insert your pnr:\n")
-                if banken.change_customer_name(new_name, pnr) == True:
+                if banken.change_customer_name(new_name, pnr):
                     print(f"Your new name is {new_name}")
 
             elif answer == 5:
@@ -66,18 +67,19 @@ def get_menu():
 
             elif answer == 8:
                 val = input("Type 1 to withdraw - Type 2 to deposit\n")
-                if val == 1:
+                if val == "1":
                     pnr = input("Insert your pnr:\n")
                     account_nr = input("Insert your account number:\n")
                     amount = int(input("Insert the amount of money you want to withdraw:\n"))
                     banken.withdrawal(pnr, account_nr, amount)
-                elif val == 2:
+                elif val == "2":
                     pnr = input("Insert your pnr:\n")
                     account_nr = input("Insert your account number:\n")
                     amount = int(input("Insert the amount of money you want to deposit:\n"))
                     banken.deposit(pnr, account_nr, amount)
                 else:
-                    print("Error")
+                    print("Wrong input!")
+
 
 
             elif answer == 9:
